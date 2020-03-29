@@ -1,0 +1,240 @@
+body {
+	background-color: #131722!important;
+}
+
+.clear {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.navbar {
+	background: #15141f;
+	color: #d1d4dc;
+	padding: 20px;
+	/*padding-left: 50px;*/
+	/*padding-bottom: 10px;*/
+	box-shadow: 0 2px 5px 0 rgba(40, 70, 100, 0.28);
+}
+
+.navbar h2 {
+	font-weight: 300;
+	font-size: 50px;
+}
+.nav_menu a {
+	text-decoration: none;
+	color: #d1d4dc;
+	font-weight: 300;
+}
+
+.nav_menu {
+	width: 100%;
+	padding: 10px;
+	/*background: #171723;*/
+	
+	z-index: 10
+}
+
+.nav_menu ul{
+	padding: 0;
+	margin: 0;
+}
+.nav_menu li {
+	list-style: none;
+	padding: 0;
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+#chart {
+	width: 74%;
+	height: 68vh;
+	float: left;	
+}
+
+.switcher {
+	width: 74%;
+	text-align: center;
+	background: #131722;
+}
+#result {
+	overflow: scroll;
+	height: 74vh;
+	float: right;
+	margin-right: 5px;
+	position: relative;
+	width: 25%;
+	/*padding: 5px;*/
+	box-shadow: 0 2px 5px 0 rgba(3, 98, 188, 0.45);
+
+}
+
+#result::-webkit-scrollbar {
+	display: none;
+}
+
+
+#result_table {
+	width: 100%;
+	border:2px solid #20203e;
+
+	border-radius: 4px 4px 0px 0px;
+	border-bottom: none;
+	padding-top: 20px;
+	position: relative;
+}
+
+.head_table {
+	background: #131722;
+	color: #d1d4dc;
+	font-weight: 600;
+	font-size: 12px;
+	/*border-bottom: 2px solid rgba(3, 98, 188, 0.36);*/
+	/*position: fixed;*/
+	/*top: 0;	*/
+	margin-left: -5px;
+}
+
+.head_table ul {
+	list-style: none;
+	padding: 0;
+	text-align: center;
+	margin: 0;
+
+}
+
+.head_table li {
+	display: inline-block;
+	text-align: center;
+	padding: 15px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	width: 16.66%;
+	float: left;
+}
+
+#result_table tbody > tr {
+	background: #131722;
+	color: #d1d4dc;
+	font-size: 12px;
+}
+
+
+#result_table tbody > tr > td {
+	width: 16.66%;
+	padding: 5px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+/*#result_table th {
+	text-align: center;
+	padding: 15px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	width: 25%;
+}
+*/
+#result_table td {
+	text-align: center;
+}
+.switcher button {
+	width: 11.11%;
+	color: #d1d4dc;
+	background-color: rgba(16, 16, 16, 0.23);
+	border:1px solid #1f1f38;
+	padding: 15px;
+	text-align: center;
+}
+
+
+.floating-tooltip-2 {
+	width: 300px;
+	height: 100vh;
+	position: absolute;
+	display: none;
+	padding: 8px;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: white;
+	background-color: rgba(16, 16, 16, 0.23);
+	text-align: left;
+	z-index: 1000;
+	top: 12px;
+	left: 12px;
+	pointer-events: none;
+	border-radius: 4px 4px 0px 0px;
+	border-bottom: none;
+	box-shadow: 0 2px 5px 0 rgba(3, 98, 188, 0.45);
+	padding-top: 20px;
+}
+
+.odd {
+	background: #1b212f!important;
+}
+
+
+/* If screen size is 600px wide, or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 1024px) {
+	body {
+		padding: 5px;
+	}
+	#chart {
+		width: 100%;
+		height: 50vh;
+		float: left;	
+	}
+
+	.switcher {
+		width: 100%;
+		text-align: center;
+		background: #131722;
+	}
+
+	#result {
+		width: 100%;
+		height: 250px;
+	}
+
+
+
+	.head_table {
+		position: absolute;
+		top: 0;
+		z-index: 2;
+		width: 100%;
+	}
+
+
+	.head_table li {
+		display: inline-block;
+		text-align: center;
+		padding: 0;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		width: 16.66%;
+
+	}
+
+
+
+	#result_table tbody > tr {
+		background: #131722;
+		color: #d1d4dc;
+		font-size: 11px;
+	}
+
+
+	.switcher button {
+		/*width: 10%;*/
+		font-size: 12px!important;
+		color: #d1d4dc;
+		background-color: rgba(16, 16, 16, 0.23);
+		border:1px solid #1f1f38;
+		padding: 20px;
+		padding-left: 0;
+		padding-right: 0;
+		text-align: center;
+	}
+
+
+}

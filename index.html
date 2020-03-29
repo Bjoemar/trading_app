@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CHART</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Latest compiled and minified CSS -->
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
+
+ -->
+   <!-- LOCAL LIBRARIES -->
+   <link rel="stylesheet" href="local/bootstrap.min.css">
+   <script src="local/jquery.min.js"></script>
+   <script src="local/popper.min.js"></script>
+   <script src="local/bootstrap.min.js"></script>
+   <script src="local/lightweight-charts.standalone.production.js"></script>
+
+
+	<!-- Socket script -->
+	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/style">
+</head>
+<body>
+	<div class="header_menu"></div>
+	<div id="chart">
+		
+	</div>
+
+	<div id="result">
+		<div class="head_table">
+			<ul>
+				<li>TIME</li>
+				<li>STOCKS</li>
+				<li>OPEN</li>
+				<li>HIGH</li>
+				<li>LOW</li>
+				<li>CLOSE</li>
+			</ul>
+		</div>
+		<table id="result_table">
+
+			<tbody>
+
+			</tbody>
+		</table>
+	</div>
+	<script type="text/javascript" src="/main/script"></script>
+</body>
+</html>
