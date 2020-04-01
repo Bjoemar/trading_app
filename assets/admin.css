@@ -1,0 +1,22 @@
+.show_user td{
+	cursor: pointer!important;
+	padding: 15px!important;
+
+}
+
+.admin_info {
+	color: white;
+	padding-top: 20px;
+}
+
+
+.admin_info label{
+	font-weight: 300;
+	/*margin-right: 10px;*/
+	font-size: 12px;
+	width: 32.33%;
+}
+
+.admin_info strong {
+	font-size: 25px;
+}

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ADMIN</title>
+		<!-- Latest compiled and minified CSS -->
+	<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
+
+	 -->
+	   <!-- LOCAL LIBRARIES -->
+	   	<link rel="stylesheet" href="/t5">
+	       <script src="/t1"></script>
+	       <script src="/t2"></script>
+	       <script src="/t3"></script>
+	       <script src="/t4"></script>
+	       <script src="/chartjs"></script>
+	       <!-- Socket script -->
+	       <script src="/socket.io/socket.io.js"></script>
+	       <link rel="stylesheet" type="text/css" href="assets/style">
+
+	       <link rel="stylesheet" type="text/css" href="admin/style">
+	       <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+
+	<div class="navbar">
+		<h2 style="margin: auto;">FX trading</h2>
+
+	</div>
+	<div class="nav_menu" style="box-shadow: 0 2px 5px 0 rgba(40, 70, 100, 0.28);
+	}">
+		<ul>
+			<li><a href="#">User </a></li>
+			<li><a href="#">Withdrawal Management</a></li>
+			<li><a href="#">Transaction History</a></li>
+			<li><a href="#">Service center</a></li>
+			<li><a id="log-out-in" href="/user/logout">Log out</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div class="nav_menu" style="padding: 5px;">
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="admin_info">
+					<h2>Statistic </h2>
+				</div>
+				<div class="admin_info">
+					<label>Bet Transaction Fee : <span id="fee_percent">0%</span></label><br>
+					<button value="0.1" class="bet_fee btn btn-dark">10%</button>
+					<button value="0.15" class="bet_fee btn btn-dark">15%</button>
+					<button value="0.2" class="bet_fee btn btn-dark">20%</button>
+					<button value="0.25" class="bet_fee btn btn-dark">25%</button>
+				</div>
+				<div class="admin_info" style="text-align: center;">
+					<label>Money Loss  <br><strong style="color: lightgreen;" id="game_money_loss">0</strong></label>
+					<label>Money Win  <br><strong style="color: lightgreen;" id="game_money_win">0</strong></label>
+					<label>Server Total Money  <br><strong style="color: lightgreen;" id="game_money_total">0</strong></label>
+				</div>
+
+				<div class="admin_info">
+					<canvas id="myChart" style="width: 100%; height: 300px;"></canvas>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="head_table">
+					<ul>
+						<li style="width: 25%;">Email</li>
+						<li style="width: 25%;">Fullname</li>
+						<li style="width: 25%;">Email</li>
+						<li style="width: 25%;">Money</li>
+					</ul>
+				</div>
+				<table id="result_table">
+
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		
+	</div>
+
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary" id="open_modal" data-toggle="modal" data-target="#exampleModal" style="display: none;"></button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog " role="document">
+	    <div class="modal-content ">
+	    	<div class="box_id" style="padding: 10px;">
+	    		
+		      	<input id="money_input" type="text" class="form-control mb-3" data-email="" value="10000">
+		      	<button id="update_user_money" class="btn btn-primary">add money</button>
+	    	</div>
+	    </div>
+	  </div>
+	</div>
+
+</body>
+<script type="text/javascript">
+	var socket = io();
+	var user_list;
+	socket.emit('get_statistic');
+
+
+	socket.on('get_prize',function(){
+		socket.emit('get_statistic');
+	});
+
+	$('#update_user_money').click(function(){
+		var email = $(this).prev().attr('data-email');
+		var new_money = $(this).prev().val();
+		$.ajax({
+			url : '/update_money',
+			method : 'post',
+			data : {'email' : email , 'money' : new_money},
+			success:function(data){
+				user_list.find('td').eq(3).html(data.money);
+				console.log(money)
+			}
+		});
+
+		$('#exampleModal').modal('hide');
+
+	});
+
+	$.ajax({
+		url : '/get_all_user',
+		method : 'post',
+		success:function(data){
+
+			for(i = 0; i < data.length; i++)
+			{
+				if (i % 2 != 0) {
+					$('#result_table tbody').append('<tr class="show_user"  value="'+i+'">'+
+						'<td>'+data[i]['username']+'</td>'+
+						'<td>'+data[i]['fullname']+'</td>'+
+						'<td>'+data[i]['email']+'</td>'+
+						'<td>'+data[i]['money']+'</td>'+
+					'</tr>')
+				} else {
+
+				$('#result_table tbody').append('<tr class="odd show_user" value="'+i+'">'+
+						'<td>'+data[i]['username']+'</td>'+
+						'<td>'+data[i]['fullname']+'</td>'+
+						'<td>'+data[i]['email']+'</td>'+
+						'<td>'+data[i]['money']+'</td>'+
+				'</tr>')
+				}
+			}
+		}
+	});
+	$(document).on('click' , '.show_user' , function(){
+		user_list = $(this);
+		var email = $(this).find('td').eq(2).html();
+		var money = $(this).find('td').eq(3).html();
+		$('#open_modal').click();
+		$('#money_input').attr('data-email', email);
+
+	})
+
+	$('.bet_fee').click(function(){
+		$.ajax({
+			url : '/change_fee',
+			method : 'post',
+			data : {'fee' : $(this).val()},
+			success:function(data){
+				if (data['fee'] == 0.1) {
+					var t_fee = '10%';
+				} else if (data['fee'] == 0.15) {
+					var t_fee = '15%';
+				} else if (data['fee'] == 0.2) {
+					var t_fee = '20%';
+				} else if (data['fee'] == 0.25) {
+					var t_fee = '25%';
+				}
+
+				$('#fee_percent').html(t_fee);
+			}
+		})
+	})
+
+
+
+
+
+
+	socket.on('data_statistic',function(statistic){
+		console.log(statistic)
+
+		$('#fee_percent').html(statistic['fee']);
+		var data_label = [];
+		var data_money = [];
+		var data_earn = [];
+		var data_loss = [];
+		var data_len = statistic['statistic'].length;
+		
+		$('#game_money_loss').html(statistic['statistic'][0]['loss'])
+		$('#game_money_win').html(statistic['statistic'][0]['earning'])
+		$('#game_money_total').html(statistic['statistic'][0]['server_money'])
+		for(i = data_len - 1; i >= 0; i--)
+		{
+			data_label.push([i]);
+			data_money.push(statistic['statistic'][i]['server_money'])
+			data_earn.push(statistic['statistic'][i]['earning'])
+			data_loss.push(statistic['statistic'][i]['loss'])
+		}
+
+
+		var ctx = document.getElementById('myChart').getContext('2d');
+		var myChart = new Chart(ctx, {
+		    type: 'line',
+		    data: {
+		        labels: data_label,
+		        datasets: [{
+		            label: 'Server Total Money',
+		            data: data_money,
+		            borderColor : 'lightgreen',
+		        },{
+		        	label: 'Money loss',
+		        	data: data_loss,
+		        	type : 'line',
+		        	borderColor : '#cf3c3c',
+		        },{
+		        	label: 'Money Earn',
+		        	data: data_earn,
+		        	type : 'line',
+		        	borderColor : '#3fc2bc',
+		        }],
+		    },
+
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero: true
+		                }
+		            }]
+		        }
+		    }
+		});
+
+	});
+
+
+</script>
+</html>
+
+

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup</title>
+		<link rel="stylesheet" href="/t5">
+	    <script src="/t1"></script>
+	    <script src="/t2"></script>
+	    <script src="/t3"></script>
+	    <script src="/t4"></script>
+
+
+	<!-- Socket script -->
+	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/style">
+
+
+</head>
+<body>
+
+
+	<div class="navbar">
+		<h2 style="margin: auto;">FX trading</h2>
+	</div>
+
+
+	<div class="register_form">
+		<div class="container">
+			<div class="reg_form">
+				<form id="register_form" method="post" action="/resgister/user">
+					<h2>Create Account</h2>
+					<small style="color: red; font-weight: small;"></small>
+					<br>
+					<label>Username</label>
+					<input id="form_username" type="text" class="web_input" name="user_name" >
+					<label>Password</label>
+					<input id="form_password" type="password" class="web_input" name="user_pass">
+					<label>Confirm Password</label>
+					<input id="form_confpassword" type="password" class="web_input" name="user_conf_password">
+					<label>Email</label>
+					<input id="form_email" type="text" class="web_input" name="user_email">
+					<label>Fullname</label>
+					<input id="form_fullname" type="text" class="web_input" name="user_fullname">
+					<button class="web_btn" type="button" id="signup_btn">SIGN UP</button>
+					<a href="/login">Sign In</a>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+<script type="text/javascript">
+
+	
+	$('#signup_btn').click(function(){
+		var username = $('#form_username').val();
+		var password = $('#form_password').val();
+		var confirmpassword = $('#form_confpassword').val();
+		var email = $('#form_email').val();
+		var fullname = $('#form_fullname').val();
+		var success = true;
+		if (username.length == 0 || password.length == 0 || confirmpassword.length == 0 || email.length == 0 || fullname.length == 0) {
+			success = false;
+			
+		}
+
+		if (password != confirmpassword) {
+			success = false;
+		}
+		$.ajax({
+			url : '/checkCredentials_username',
+			method : 'post',
+			data : {'username' : username},
+			success:function(data){
+				console.log(data)
+				if (data.status != 'ok') {
+					success = false;
+					$('small').html('* '+data.message)
+				} else {
+					var email = $('#form_email').val();
+
+
+					$.ajax({
+						url : '/checkCredentials_email',
+						method : 'post',
+						data : {'email' : email},
+						success:function(data){
+							console.log(data)
+							if (data.status != 'ok') {
+								success = false;
+								$('small').html('* '+data.message)	
+							} else {
+								if (success) {
+
+									$('#register_form').submit();	
+								}
+							}
+
+						}
+					})
+
+				}
+			}
+		})
+
+		// console.log(success)
+	
+	})
+
+
+</script>
+
+	<script type="text/javascript" src="/fetch_js"></script>
+</html>

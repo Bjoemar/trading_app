@@ -2,6 +2,142 @@ body {
 	background-color: #131722!important;
 }
 
+*:focus {
+    outline: none;
+}
+
+.transaction_head {
+	background: #131722;
+	color: #d1d4dc;
+	font-weight: 600;
+	font-size: 12px;
+}
+
+#transaction_table tbody > tr {
+	background: #131722;
+	color: #d1d4dc;
+	font-size: 12px;
+}
+
+#transaction_table  td {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: center;
+	font-size: 12px;
+}
+
+
+#transaction_table {
+	width: 100%;
+	margin-left: 2px;
+	border-top: 2px solid rgba(3, 98, 188, 0.45);
+
+}
+
+.transaction_head th {
+	text-align: center;
+	padding: 10px;
+}
+
+#utc_time {
+	font-size: 20px;
+	font-weight: 300;
+}
+.betinfo {
+	width: 60%;
+	float: left;
+	/*text-align: center;*/
+}
+
+.bet_reset {
+	width: 100%;
+	float: right;
+	text-align: center;
+}
+
+.betinfo span{
+	font-size: 30px!important;
+}
+
+.info_col label {
+	font-weight: 300;
+	font-size: 12px;
+	position: absolute;
+	top: 0;
+	left: 10px;
+}
+
+.info_col h5 {
+	margin-top: 10px;
+}
+
+
+.bet_btn {
+	width: 23.5%;
+	padding: 10px;
+	font-size: 12px;
+	font-weight: 600;
+	border-radius: 5px;
+	border:none;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	color: black;
+
+}
+
+.buy_button {
+	background: #cf3c3c;
+}
+
+.bet_conf_btn {
+	width: 19%;
+	margin-top: 12px;
+	background: #0b0d29;
+	font-size: 20px;
+	border-radius: 5px;
+	border:none;
+	color: white;
+}
+
+.sell_button {
+	background: #3fc2bc;
+	
+}
+
+#bet {
+	font-size: 30px;
+}
+#confirmbet {
+	padding-top: 6px;
+	    font-size: 12px;
+	    margin: 0;
+	    height: 34px;
+	    width: 35%;
+}
+
+
+.info_col {
+	width: 100%;
+	padding: 10px;
+	color: #d1d4dc;
+	position: relative;
+}
+
+
+.main_holder {
+	max-width: 2000px;
+	margin: auto;
+}
+.information {
+	font-size: 15px;
+	width: 20%;
+	float: right;
+	background: #131722;
+	height: 100vh;
+	height: 76vh;
+	box-shadow: 0 2px 5px 0 rgba(3, 98, 188, 0.45);
+}
+
 .clear {
 	display: block;
 	content: "";
@@ -14,14 +150,14 @@ body {
 	padding: 20px;
 	/*padding-left: 50px;*/
 	/*padding-bottom: 10px;*/
-	box-shadow: 0 2px 5px 0 rgba(40, 70, 100, 0.28);
+	box-shadow: 0 2px 5px 0 rgba(40, 60, 100, 0.28);
 }
 
 .navbar h2 {
 	font-weight: 300;
 	font-size: 50px;
 }
-.nav_menu a {
+.nav_menu  a {
 	text-decoration: none;
 	color: #d1d4dc;
 	font-weight: 300;
@@ -47,19 +183,19 @@ body {
 	text-align: center;
 }
 #chart {
-	width: 74%;
+	width: 54%;
 	height: 68vh;
 	float: left;	
 }
 
 .switcher {
-	width: 74%;
+	width: 54%;
 	text-align: center;
 	background: #131722;
 }
 #result {
 	overflow: scroll;
-	height: 74vh;
+	height: 76vh;
 	float: right;
 	margin-right: 5px;
 	position: relative;
@@ -77,7 +213,6 @@ body {
 #result_table {
 	width: 100%;
 	border:2px solid #20203e;
-
 	border-radius: 4px 4px 0px 0px;
 	border-bottom: none;
 	padding-top: 20px;
@@ -123,8 +258,8 @@ body {
 #result_table tbody > tr > td {
 	width: 16.66%;
 	padding: 5px;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 /*#result_table th {
 	text-align: center;
@@ -134,7 +269,7 @@ body {
 	width: 25%;
 }
 */
-#result_table td {
+#result_table  td {
 	text-align: center;
 }
 .switcher button {
@@ -173,6 +308,43 @@ body {
 }
 
 
+.reg_form {
+	max-width: 500px;
+	padding-top: 130px;
+	color: #4569c8;
+	font-weight: 300;
+	margin: auto;
+}
+
+.reg_form label {
+	padding: 5px;
+	padding-top: 20px;
+}
+
+.web_input {
+	width: 100%;
+	border:none;
+	border-bottom: 1px solid white;
+	background: transparent;
+	color: #d1d4dc;
+	padding: 10px;
+}
+
+.web_btn {
+	margin-top: 20px;
+    width: 100%;
+    background: #0c091b;
+    border: none;
+    color: #d1d4dc;
+    padding: 10px;
+    box-shadow: 0 2px 5px 0 rgba(3, 98, 188, 0.45);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+
+
 /* If screen size is 600px wide, or less, set the font-size of <div> to 30px */
 @media screen and (max-width: 1024px) {
 	body {
@@ -209,7 +381,6 @@ body {
 		display: inline-block;
 		text-align: center;
 		padding: 0;
-		padding-top: 20px;
 		padding-bottom: 20px;
 		width: 16.66%;
 

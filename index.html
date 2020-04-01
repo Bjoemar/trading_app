@@ -4,6 +4,7 @@
 	<title>CHART</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/font-awesome" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	<!-- Latest compiled and minified CSS -->
 <!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -14,41 +15,156 @@
 
  -->
    <!-- LOCAL LIBRARIES -->
-   <link rel="stylesheet" href="local/bootstrap.min.css">
-   <script src="local/jquery.min.js"></script>
-   <script src="local/popper.min.js"></script>
-   <script src="local/bootstrap.min.js"></script>
-   <script src="local/lightweight-charts.standalone.production.js"></script>
-
+   	<link rel="stylesheet" href="/t5">
+       <script src="/t1"></script>
+       <script src="/t2"></script>
+       <script src="/t3"></script>
+       <script src="/t4"></script>
+    
 
 	<!-- Socket script -->
 	<script src="/socket.io/socket.io.js"></script>
 	<link rel="stylesheet" type="text/css" href="assets/style">
+
+	<script type="text/javascript">
+		$.ajax({
+			url : '/user_info',
+			method : 'get',
+			success:function(data){
+				if (data['status'] == "404") {
+					location.reload()
+				} 
+
+			}
+		})
+	</script>
+
+
+
 </head>
 <body>
-	<div class="header_menu"></div>
-	<div id="chart">
-		
-	</div>
-
-	<div id="result">
-		<div class="head_table">
-			<ul>
-				<li>TIME</li>
-				<li>STOCKS</li>
-				<li>OPEN</li>
-				<li>HIGH</li>
-				<li>LOW</li>
-				<li>CLOSE</li>
-			</ul>
+	<div class="main_holder">
+			
+		<div class="header_menu"></div>
+		<div id="chart">
+			
 		</div>
-		<table id="result_table">
 
-			<tbody>
 
-			</tbody>
-		</table>
+		<div id="result">
+			<div class="head_table">
+				<ul>
+					<li>TIME</li>
+					<li>STOCKS</li>
+					<li>OPEN</li>
+					<li>HIGH</li>
+					<li>LOW</li>
+					<li>CLOSE</li>
+				</ul>
+			</div>
+			<table id="result_table">
+
+				<tbody>
+
+				</tbody>
+			</table>
+			
+
+			<div class="transaction_history" >
+				<table id="transaction_table">
+					<thead class="transaction_head">
+						<th>BET MONEY</th>
+						<th>BALANCE</th>
+						<th>RESULT</th>
+						<th>EARN</th>
+					</thead>
+
+					<tbody>
+						
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+
+		<div class="information">
+			<div class="info_col odd">
+				<select class="form-control btn-dark">
+					<option>KRW/USD</option>
+				</select>
+			</div>
+
+			<div class="info_col odd">
+				<label>Username</label>
+				<h5  id="username_info">DEVELOPER MODE</h5>
+
+			</div>
+			<div class="info_col odd">
+				<label>Current Money</label>
+				<h5 id="current_money_info" value="0">000,000,000</h5>
+			</div>
+
+			<div class="info_col odd" >
+				<div class="info_col" style="float: left; width: 50%;">
+					<label>Buy BET</label>
+					<div class="betinfo">
+						<span id="bet_buy_number">0</span>
+					</div>
+				</div>
+
+				<div class="info_col" style="float: right; text-align: left; width: 50%; position: relative;">
+					<label>Sell BET</label>
+					<div class="betinfo">
+						<span id="bet_sell_number">0</span>
+					</div>
+				</div>
+
+				<div class="bet_reset">
+					<button id="confirmbet" class="bet_conf_btn">CONFIRM BET</button>
+					<button id="reset_btn" class="bet_conf_btn">+</button>
+					<button id="reset_btn" class="bet_conf_btn">-</button>
+					<button id="reset_all_bet" class="bet_conf_btn">R</button>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="info_col odd ">
+				<button class="bet_btn buy_button" value="5000">Buy <br> 5,000 </button>
+				<button class="bet_btn buy_button" value="10000">Buy <br> 10,000 </button>
+				<button class="bet_btn buy_button" value="100000">Buy <br> 100,000 </button>
+				<button class="bet_btn buy_button" value="500000">Buy <br> 500,000 </button>
+
+				<button class="bet_btn sell_button" value="5000">Sell <br> 5,000 </button>
+				<button class="bet_btn sell_button" value="10000">Sell <br> 10,000 </button>
+				<button class="bet_btn sell_button" value="100000">Sell <br> 100,000 </button>
+				<button class="bet_btn sell_button" value="500000">Sell <br> 500,000 </button>
+			</div>
+			<div class="info_col odd" style="text-align: center;">
+				<h6>UTC Time</h6>
+				<p id="utc_time"></p>
+			</div>
+
+		</div>
+
 	</div>
+
+	<button type="button" class="btn btn-primary" id="open_modal" data-toggle="modal" data-target="#exampleModal" style="display: none;"></button>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog " role="document">
+	    <div class="modal-content " style="background:  #15141f;">
+	    	<div class="box_id" style="padding: 10px; text-align: center; color: white;" >
+	    		<p>Are you sure you want to <span style="color: #3fc2bc;">BUY</span> stock <span id="buy_confirm_money"></span> ?</p>
+	    		<p>Are you sure you want to <span style="color: #cf3c3c">SELL</span> stock <span id="sell_confirm_money"></span> ?</p>
+		      	<button id="place_bet" class="btn btn-dark">CONFIRM</button>
+	    	</div>
+	    </div>
+	  </div>
+	</div>
+
 	<script type="text/javascript" src="/main/script"></script>
+	<script type="text/javascript" src="/fetch_js"></script>
+
+
 </body>
 </html>

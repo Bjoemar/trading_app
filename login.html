@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup</title>
+	<link rel="stylesheet" href="/t5">
+    <script src="/t1"></script>
+    <script src="/t2"></script>
+    <script src="/t3"></script>
+    <script src="/t4"></script>
+	<!-- Socket script -->
+	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/style">
+</head>
+<body>
+
+	<div class="navbar">
+		<h2 style="margin: auto;">FX trading</h2>
+	</div>
+
+	<div class="login_form">
+		<div class="container">
+			<div class="reg_form" >
+				<form id="login_form" method="post" action="/login/user" >
+					<h2 style="text-align: center;">TradeFx</h2>
+					<label>Username</label>
+					<input id="form_username" type="text" class="web_input" name="user_name" >
+					<label>Password</label>
+					<input id="form_password" type="password" class="web_input" name="user_pass">
+					<button class="web_btn" type="button" id="signup_btn">LOGIN</button>
+					<a href="/register">Don' have account yet ?</a>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+<script type="text/javascript">
+	
+	
+	
+	$('#signup_btn').click(function(){
+		var username = $('#form_username').val();
+		var password = $('#form_password').val();
+		var success = true;
+		if (username.length == 0 || password.length == 0) {
+			success = false;
+		}
+
+		if (success) {
+			$('#login_form').submit();
+		}
+	})
+</script>
+
+<script type="text/javascript" src="/fetch_js"></script>
+</html>
